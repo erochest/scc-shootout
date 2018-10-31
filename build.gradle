@@ -1,8 +1,23 @@
 buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
+    }
     dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE"
+
         classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
         // if using Stub Runner (consumer side) only remove this dependency
         classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:2.0.3.BUILD-SNAPSHOT"
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.spring.io/libs-snapshot'
     }
 }
 
@@ -10,30 +25,20 @@ apply plugin: "io.spring.dependency-management"
 apply plugin: 'spring-cloud-contract'
 
 dependencyManagement {
-     imports {
-          mavenBom 'org.springframework.cloud:spring-cloud-contract-dependencies:2.0.3.BUILD-SNAPSHOT'
-     }
+    imports {
+        mavenBom 'org.springframework.cloud:spring-cloud-contract-dependencies:2.0.3.BUILD-SNAPSHOT'
+    }
 }
 
 dependencies {
-      testCompile 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+    compile 'org.springframework.boot:spring-boot-starter-web:2.1.0.RELEASE'
+
+    testCompile 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+    testCompile 'junit:junit'
 }
 
 // In this section you define all Spring Cloud Contract Verifier Gradle Plugin properties
 contracts {
-      baseClassForTests = 'com.example.MvcTest'
-  // fully qualified name to a class that will be the base class for your generated test classes
+    baseClassForTests = 'com.example.MvcTest'
+    // fully qualified name to a class that will be the base class for your generated test classes
 }// Unnecessary if you're using Spring Cloud Stub Runner only
-buildscript {
-    repositories {
-        maven {
-            url 'https://repo.spring.io/libs-snapshot'
-        }
-    }
-}
-
-repositories {
-    maven {
-        url 'https://repo.spring.io/libs-snapshot'
-    }
-}
