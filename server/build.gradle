@@ -42,3 +42,14 @@ contracts {
     baseClassForTests = 'com.example.MvcTest'
     // fully qualified name to a class that will be the base class for your generated test classes
 }// Unnecessary if you're using Spring Cloud Stub Runner only
+
+subprojects {
+    apply plugin: "java"
+    
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
+    }
+}
