@@ -1,6 +1,7 @@
 import org.springframework.cloud.contract.spec.Contract
 
 Contract.make {
+
     request {
         method 'PUT'
         url '/fraudcheck'

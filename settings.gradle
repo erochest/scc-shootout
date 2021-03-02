@@ -1,3 +1,4 @@
-rootProject.name = 'shootout-server'
+rootProject.name = 'shootout'
 
+include 'server'
 include 'client'
